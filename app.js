@@ -4,6 +4,7 @@ const ejs = require("ejs");
 const methodOverride = require("method-override");
 const path = require("path");
 const Listing = require("./models/listing.js");
+const Review = require("./models/review.js");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
@@ -111,6 +112,21 @@ app.delete(
     res.redirect("/listings");
   })
 );
+
+//REVIEWS
+//Post Route
+app.post("/listings/:id/reviews", async (req, res) => {
+  let { id } = req.params;
+  let listing = await Listing.findById(id);
+  let newReview = new Review(req.body.review);
+
+  listing.reviews.push(newReview);
+
+  await newReview.save();
+  await listing.save();
+
+  res.redirect(`/listings/${id}`);
+});
 
 app.all("*", (req, res, next) => {
   next(new ExpressError(404, "Page Not Found!"));

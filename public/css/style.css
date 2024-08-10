@@ -127,6 +127,8 @@ body {
 
 .show-img {
   height: 50vh;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .btns {

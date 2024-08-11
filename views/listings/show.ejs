@@ -5,7 +5,7 @@
     <div class="col-8 offset-3 mt-3">
       <h2 class="title"><%=listing.title%></h2>
     </div>
-    <div class="card col-6 offset-3 show-card">
+    <div class="card show-card col-6 offset-3 show-card">
       <img
         src="<%=listing.image.url%>"
         alt="<%=listing.image.filename%>"
@@ -34,7 +34,12 @@
 
   <div class="col-8 offset-3 mb-3 mt-3">
     <h3>Leave a Review</h3>
-    <form method="post" action="/listings/<%=listing._id%>/reviews">
+    <form
+      method="post"
+      action="/listings/<%=listing._id%>/reviews"
+      novalidate
+      class="needs-validation"
+    >
       <div class="mb-3 mt-3">
         <label for="rating" class="form-label">Rating</label>
         <input
@@ -54,9 +59,34 @@
           cols="30"
           rows="5"
           class="form-control"
+          required
         ></textarea>
+        <div class="invalid-feedback">Please add some comments for review</div>
       </div>
       <button class="btn btn-outline-dark">Submit</button>
     </form>
+
+    <h5>All Reviews</h5>
+    <div class="row">
+      <%for (review of listing.reviews){%>
+      <div class="card  col-5 ms-3 mb-3">
+        <div class="card-body">
+          <h6 class="card-title">Jane Doe</h6>
+          <p class="card-text"><%= review.comment%></p>
+          <p class="card-text">
+            <% for (let i=0;i<review.rating;i++){%>
+              <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+            <%}%>
+            <% for (let i=0;i<5-review.rating;i++){%>
+              <i class="fa-regular fa-star" style="color: #FFD43B;"></i>
+            <%}%>
+            </p>
+            <form method="post" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE" class="mb-3">
+              <button class="btn btn-dark btn-sm">Delete</button>
+            </form>
+        </div>
+      </div>
+      <%}%>
+    </div>
   </div>
 </body>

@@ -76,6 +76,12 @@ body {
   object-fit: cover;
 }
 
+@media (max-width: 576px) {
+  .show-card .card-img-top {
+    height: 25vh !important;
+  }
+}
+
 .card-body {
   padding: 0;
 }
@@ -112,6 +118,10 @@ body {
   background-color: #20080861;
 }
 
+.preview-curr-image {
+  width: 25%;
+}
+
 .add-btn,
 .edit-btn {
   background-color: #fe424d;
@@ -135,4 +145,48 @@ body {
 .btns {
   display: flex;
   gap: 3rem;
+}
+
+.review-card {
+  height: 25vh;
+}
+
+.review-card-content {
+  height: 100%;
+}
+
+.review-comment {
+  height: 35%;
+  width: 80%;
+  overflow-y: scroll;
+}
+
+.review-comment::-webkit-scrollbar {
+  display: none;
+}
+
+.review-card-profile {
+  height: 20%;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.review-card-profile img {
+  display: inline-block;
+  height: 5vh;
+  width: 5vh;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.review-card-profile p {
+  font-size: 1.2rem;
+}
+
+/* MAP */
+
+#map {
+  width: 80vw;
+  height: 50vh;
 }

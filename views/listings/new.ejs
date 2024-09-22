@@ -10,6 +10,7 @@
         method="post"
         novalidate
         class="needs-validation"
+        enctype="multipart/form-data"
       >
         <div class="mb-3">
           <label for="listing[title]" class="form-lable">Title</label>
@@ -37,27 +38,14 @@
         </div>
 
         <div class="row">
-          <div class="mb-3 col-md-4">
-            <label for="listing[image][filename]" class="form-lable"
-              >Image File Name</label
+          <div class="mb-3">
+            <label for="listing[image]" class="form-lable"
+              >Upload Cover Image</label
             >
             <input
-              name="listing[image][filename]"
-              placeholder="enter Image Name"
-              type="text"
+              name="listing[image]"
               class="form-control"
-            />
-            <p class="invalid-feedback">Please enter Valid File Name</p>
-          </div>
-          <div class="mb-3 col-md-8">
-            <label for="listing[image][url]" class="form-lable"
-              >Image URL/ Link</label
-            >
-            <input
-              name="listing[image][url]"
-              placeholder="enter title "
-              class="form-control"
-              type="text"
+              type="file"
             />
             <p class="invalid-feedback">Please enter URL/Link</p>
           </div>

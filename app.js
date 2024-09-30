@@ -1,7 +1,6 @@
-if(process.env.NODE_ENV!="production"){
+if (process.env.NODE_ENV != "production") {
   require("dotenv").config();
 }
-
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -34,14 +33,15 @@ const listingRouter = require("./routes/listings.js");
 const reviewRouter = require("./routes/reviews.js");
 const userRouter = require("./routes/users.js");
 
-const mongo_url = "mongodb://127.0.0.1:27017/AbodeAway";
+// const mongo_url = "mongodb://127.0.0.1:27017/AbodeAway";
+const dbURL = process.env.ATLASDB_URL;
 
 main()
   .then(() => console.log("Connection to DB Successful"))
   .catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect(mongo_url);
+  await mongoose.connect(dbURL);
 }
 
 app.set("views", path.join(__dirname, "views"));
@@ -54,7 +54,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.engine("ejs", ejsMate);
 
 app.get("/", (req, res) => {
-  res.send("Hi! I am Root");
+  res.redirect("/listings");
 });
 
 app.use(session(sessionOptions));

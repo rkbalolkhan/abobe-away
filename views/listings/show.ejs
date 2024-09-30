@@ -1,6 +1,8 @@
 <% layout('/layouts/boilerplate.ejs') -%>
 <script>
   let mapToken = "<%=process.env.MAP_TOKEN%>";
+  let coOrdinates = <%-JSON.stringify(listing.geometry.coordinates)%>;
+  let listing = <%-JSON.stringify(listing)%>;
 </script>
 
 <body>
@@ -144,9 +146,9 @@
     <%}%>
   </div>
 
-  <div class="col-10 col-md-6 mb-3 mt-3">
+  <div>
     <h3 class="text-center">Where you'll be</h3>
-    <div id="map" class="col-8 col-md-6 offset-1 offset-md-3 mb-3 mt-3"></div>
+    <div id="map" class="mb-3 mx-auto"></div>
   </div>
 
   <script src="/js/map.js"></script>

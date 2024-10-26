@@ -36,7 +36,7 @@ module.exports.userSignin = async (req, res) => {
 module.exports.userSignout = (req, res) => {
   req.logout((err) => {
     if (err) {
-      next(err);
+      return next(err);
     } else {
       req.flash("success", "You are Signed Out now");
       res.redirect("/listings");
